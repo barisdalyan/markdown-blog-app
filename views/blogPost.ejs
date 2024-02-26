@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Post - <%= blogPost.title %></title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/btn-style.css" type="text/css">
+</head>
+<body>
+<div class="post-container">
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <div class="row">
+            <h1 class="post-header"><%= blogPost.title %></h1>
+        </div>
+        <div class="row">
+            <img src="<%= blogPost.coverImageURL %>" alt="Java Interface post banner" class="img-fluid cover-img">
+        </div>
+        <div class="row">
+            <div class="container mt-4">
+                <%- blogPost.sanitizedContentHtml %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="heart-btn">
+                <div class="content">
+                    <span class="heart"></span>
+                    <span class="text">Like</span>
+                    <span class="num"><%= likes.amount %></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="author">
+                <img src="<%= blogPost.createdBy.profileImageURL %>" alt="Author profile image" class="author-img">
+                <%= blogPost.createdBy.fullName %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <h2 class="card-header comment-header">Comments (<%= comments.length %>)</h2>
+                <div class="card-body comment-body">
+                    <% if (locals.user){ %>
+                        <div class="mb-3">
+                            <form action="/posts/comment/<%= blogPost.slug %>-<%= blogPost._id %>" method="post">
+                            <input type="text" class="form-control" name="content"
+                                   placeholder="Enter your comment here..." id="comment-input">
+                            <button class="btn btn-primary mt-3" id="comment-submit-btn">Send</button>
+                            </form>
+                        </div>
+                    <% } %>
+                    <% if (comments.length){ %>
+                        <div class="comment-box">
+                            <% comments.forEach(comment =>{ %>
+                                <img src="<%= comment.createdBy.profileImageURL %>" alt="User profile image"
+                                     class="comment-img"><%= comment.createdBy.fullName %>:
+                                <p style="margin-top: 5px;"><%= comment.content %></p>
+                            <% }); %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('./partials/footer') %>
+<%- include('./partials/script') %>
+<script>
+    const postId = "<%= blogPost._id %>";
+    const postSlug = "<%= blogPost.slug %>";
+    let likeAmount = parseInt("<%= likes.amount %>", 10);
+    const isUserAuthorized = "<%= !!locals.user %>";
+    const isUserLiked = "<%= likes.isUserLiked %>";
+</script>
+<script src="/js/heartButton.js"></script>
+</body>
+</html>

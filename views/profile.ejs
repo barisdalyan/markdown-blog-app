@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Update User Profile</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+</head>
+<body>
+<div class="post-container" style="min-height: 75vh;">
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <% if (user){ %>
+            <% if(user.role === 'USER') { %>
+                <div class="row">
+                    <img src="<%= user.profileImageURL %>" alt="User profile image" class="profile-img">
+                </div>
+                <div class="row">
+                    <form action="/user/profile/edit/<%= user._id %>?_method=PUT" method="post"
+                          enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="profile-image" class="form-label">Profile Image</label>
+                            <input type="file" class="form-control" id="profile-image" name="profileImage">
+                        </div>
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullname" name="fullName"
+                                   value="<%= user.fullName %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a href="/" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            <% }else { %>
+                <p class="h2" style="text-align: center;">HTTP Error 403 - Forbidden</p>
+            <% } %>
+        <% }else { %>
+            <p class="h2" style="text-align: center;">HTTP Error 403 - Forbidden</p>
+        <% } %>
+    </div>
+</div>
+<%- include('./partials/footer') %>
+<%- include('./partials/script') %>
+</body>
+</html>

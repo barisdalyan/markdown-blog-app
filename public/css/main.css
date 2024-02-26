@@ -1,0 +1,132 @@
+.nav-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-profile-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 25px;
+    margin-right: 10px
+}
+
+.nav-brand-font {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 8px 0;
+    color: #1f2328;
+}
+
+.post-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 100vh
+}
+
+@media only screen and (max-width: 1920px) {
+    .post-container {
+        max-width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .post-container {
+        max-width: 75%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .post-container {
+        max-width: 95%;
+    }
+}
+
+.author {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.author-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    margin-right: 5px;
+}
+
+.post-header {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    color: #292929FF;
+    letter-spacing: -0.016em;
+}
+
+.comment-box {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.comment-header {
+    background-color: white;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: -0.016em;
+}
+
+.comment-body {
+    padding: 20px 5px;
+}
+
+.cover-img {
+    margin: auto;
+    display: block;
+}
+
+.profile-img {
+    width: 128px;
+    height: 128px;
+    margin: auto;
+    display: block;
+    padding: 0;
+    border-radius: 128px;
+}
+
+.comment-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    margin-right: 5px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 100px;
+    width: 100%;
+    height: 75px;
+    padding: 10px;
+}
+
+.socials {
+    margin-bottom: 8px;
+}
+
+.social-icon {
+    width: 16px;
+    height: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+pre {
+    background-color: #f6f6f6;
+    padding: 10px;
+}

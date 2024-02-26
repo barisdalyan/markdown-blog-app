@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Baris Dalyan Emre</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+</head>
+<body>
+<div class="post-container" style="min-height: 75vh;">
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <h3 style="margin-bottom: 10px;">Posts</h3>
+        <% blogPosts.forEach(post => { %>
+            <div class="card mb-3">
+                <h4 class="card-title m-3"><%= post.title %></h4>
+                <div class="card-body">
+                    <div class="row">
+                        <%- post.sanitizedDescriptionHtml %>
+                    </div>
+                    <a href="/posts/<%= post.slug %>-<%= post._id %>" class="btn btn-primary mt-2">Read more</a>
+                    <% if (locals.user){ %>
+                        <% if (locals.user.role === 'ADMIN'){ %>
+                            <a href="/admin/posts/edit/<%= post.slug %>-<%= post._id %>">
+                                <div class="btn btn-secondary mt-2">Edit</div>
+                            </a>
+                            <form action="/admin/posts/<%= post._id %>?_method=DELETE" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                            </form>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+<%- include('./partials/footer') %>
+<%- include('./partials/script') %>
+</body>
+</html>

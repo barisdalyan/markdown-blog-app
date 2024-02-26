@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Add New Post</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+</head>
+<body>
+<div class="post-container">
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <% if (locals.user){ %>
+            <% if(locals.user.role === 'ADMIN') { %>
+                <form action="/admin/posts/add" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="cover-image" class="form-label">Cover Image</label>
+                        <input type="file" class="form-control" id="cover-image" name="coverImage" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" class="form-control" id="description" rows="5" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea name="content" class="form-control" id="content" rows="5" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Publish</button>
+                        <a href="/" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            <% }else { %>
+                <p class="h2" style="text-align: center;">HTTP Error 403 - Forbidden</p>
+            <% } %>
+        <% }else { %>
+            <p class="h2" style="text-align: center;">HTTP Error 403 - Forbidden</p>
+        <% } %>
+    </div>
+</div>
+<%- include('./partials/footer') %>
+<%- include('./partials/script') %>
+</body>
+</html>

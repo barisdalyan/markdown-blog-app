@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Admin - Sign Up</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+</head>
+<body>
+<div class="post-container" style="min-height: 75vh;">
+    <%- include('./partials/nav') %>
+    <div class="container mt-4">
+        <div class="card">
+            <h5 class="card-header">Create Admin Account</h5>
+            <div class="card-body">
+                <form action="/admin/signup" method="post">
+                    <div class="mb-3">
+                        <label for="fullname" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullname" name="fullName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="input-email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="input-password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="input-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('./partials/footer') %>
+<%- include('./partials/script') %>
+</body>
+</html>

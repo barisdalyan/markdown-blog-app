@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Admin - Comment Requests</title>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+</head>
+<body>
+<div class="post-container" style="min-height: 75vh;">
+    <%- include('./partials/nav') %>
+<div class="container mt-4">
+    <% if (locals.user){ %>
+        <% if(locals.user.role === 'ADMIN') { %>
+            <div class="card">
+                <h5 class="card-header">Comment Requests</h5>
+                <% comments.forEach(comment => { %>
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Full Name: <%= comment.createdBy.fullName %></h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Email: <%= comment.createdBy.email %></h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Post: <%= comment.postId.title %></h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Comment:</h6>
+                            <p class="card-text"><%= comment.content %></p>
+                            <form action="/admin/comment/accept/<%= comment._id %>" method="post"
+                                  class="d-inline-block">
+                                <button class="btn btn-primary">Accept</button>
+                            </form>
+                            <form action="/admin/comment/remove/<%= comment._id %>?_method=DELETE" method="post"
+                                  class="d-inline-block">
+                                <button class="btn btn-danger">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% }else { %>
+            <p class="h2" style="text-align: center;">HTTP Error 403 - Forbidden</p>
+        <% } %>
+    <% }else { %>
+        <p class="h2" style="text-align: center;">HTTP Error 403 - Forbidden</p>
+    <% } %>
+</div>
+</div>
+<%- include('./partials/footer') %>
+<%- include('./partials/script') %>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<div class="nav-container">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <img src="/admin.jpeg" alt="Admin profile" class="nav-profile-img">
+            <a class="navbar-brand nav-brand-font">Baris Dalyan Emre</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <% if (locals.user){ %>
+                        <% if (locals.user.role === 'ADMIN'){ %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/posts/add">Add Post</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/comments">Comments</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">Admin</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="/admin/logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <% } else { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user/profile">Profile</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false"><%= locals.user.email %></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="/user/logout">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <% } %>
+                    <% }else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/signin">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/signup">Sign up</a>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
