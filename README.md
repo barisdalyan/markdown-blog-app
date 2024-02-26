@@ -33,6 +33,7 @@ Users can comment and like the posts.
 MONGODB_URI=mongodb://mongodb:27017/markdownblogappdb
 PORT=3000
 ```
+- Add a folder named `uploads` into the `public` directory to store images.
 
 - Run the following command:
 
